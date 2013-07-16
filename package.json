@@ -1,0 +1,9 @@
+{
+  "name": "API-ify",
+  "description": "Make information frontend-accessible by allowing users to specify a URL and a TTL, and get back the page content.",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "3.x"
+  }
+}
