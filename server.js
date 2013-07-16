@@ -40,7 +40,17 @@ app.get('/', function(req, res) {
 
 });
 
-// Start the server
-app.listen(3000);
+var args = process.argv.splice(2);
 
-console.log('Started app. Listening on port 3000');
+var port;
+
+try {
+    port = parseInt(args[0]);
+} catch (err) {
+    port = 3000;
+}
+
+// Start the server
+app.listen(port);
+
+console.log('Started app. Listening on port', port);
