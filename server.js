@@ -30,7 +30,14 @@ app.get('/', function(req, res) {
     res.set('Content-Type', 'application/json');
 
     try {
-        request.get(req.query.url).pipe(res);
+        request({
+            url: req.query.url,
+            headers: {
+                accept: req.headers.accept,
+                authorization: req.headers.authorization,
+                'Content-Type': 'application/json'
+            }
+        }).pipe(res);
     } catch (err) {
         res.send(
             'Error: please specify a URL (e.g. ?url=http://example.com/path)');
@@ -42,11 +49,9 @@ app.get('/', function(req, res) {
 
 var args = process.argv.splice(2);
 
-var port;
+var port = parseInt(args[0]);
 
-try {
-    port = parseInt(args[0]);
-} catch (err) {
+if (isNaN(port)) {
     port = 3000;
 }
 
